@@ -1,4 +1,4 @@
-// 1. Функция для получения данных (GET)
+// Функция для получения данных (GET)
 const getData = async (url) => {
     const response = await fetch(url);
     
@@ -9,7 +9,7 @@ const getData = async (url) => {
     return await response.json();
 };
 
-// 2. Функция для отправки данных (POST)
+// Функция для отправки данных (POST)
 const sendData = async (url, data) => {
     const response = await fetch(url, {
         method: 'POST',
@@ -29,22 +29,21 @@ const sendData = async (url, data) => {
 // Логика инициализации при загрузке страницы
 const init = async () => {
     try {
-        // 3. Получаем данные из локального JSON (укажите верный путь к файлу)
+        // Получаем данные из локального JSON
         console.log('Загрузка данных...');
         const data = await getData('db.json'); 
         console.log('Данные получены:', data);
 
-        // 4. Отправляем полученные данные на сервер
+        // Отправляем полученные данные на сервер
         console.log('Отправка данных на сервер...');
         const result = await sendData('https://jsonplaceholder.typicode.com/posts', data);
         
         console.log('Успешный ответ сервера:', result);
         
     } catch (error) {
-        // 5. Обработка ошибок
+        // Обработка ошибок
         console.error('Произошла ошибка в процессе:', error.message);
     }
 };
 
-// Запуск при загрузке DOM
 document.addEventListener('DOMContentLoaded', init);
